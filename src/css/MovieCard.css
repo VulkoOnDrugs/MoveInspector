@@ -1,0 +1,129 @@
+/* .movie-card{
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    cursor: pointer;
+}
+
+.movie-poster{
+    position: relative;
+    aspect-ratio: 2/3;
+    width: 100%;
+}
+
+.movie-poster img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.favorite-btn{
+    position: absolute;
+    color: red;
+    font-size: 1.5rem;
+    top: 5%;
+    right: 8%;
+}
+
+.movie-info{
+    opacity: 0;
+    position: absolute;
+    color: white;
+    text-align: center;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-shadow: 0 0 7px black;
+    transition: all .5s;
+}
+
+.movie-card:hover .movie-info{
+    opacity: 1;
+    top: 50%;
+}
+
+.overlay-layer{
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all .5s;
+}
+
+.movie-card:hover .overlay-layer{
+    opacity: 1;
+} */
+
+.movie-card{
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    cursor: pointer;
+
+}
+
+.movie-poster {
+    position: relative;
+    aspect-ratio: 2/3;
+    width: 100%;
+}
+
+.movie-poster img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.favorite-btn{
+    position: absolute;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.5rem;
+    top: 5%;
+    right: 8%;
+    transition: all 0.3s;
+}
+
+.favorite-btn:hover{
+    color: rgb(255, 0, 0);
+}
+
+.movie-info{
+    opacity: 0;
+    position: absolute;
+    color: white;
+    text-align: center;
+    top:100%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 0 0 7px black;
+    transition: all .5s;
+    
+}
+
+.overlay-layer{
+    position: absolute;
+    opacity: 0;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: all .5s;
+}
+
+.movie-card:hover .movie-info{
+    opacity: 1;
+    top: 50%;
+}
+.movie-card:hover .overlay-layer{
+    opacity: 1;
+}
