@@ -1,6 +1,6 @@
-# 🎬 Movie Info Finder  
+# 🎬 MoveInspector  
 
-A simple project that fetches and displays movie details (overview, genres, cast, etc.) using **The Movie Database (TMDb) API**.  
+MoveInspector is a simple project that fetches and displays movie details (overview, genres, cast, etc.) using **The Movie Database (TMDb) API**.  
 
 ## 🚀 Features  
 
@@ -13,8 +13,8 @@ A simple project that fetches and displays movie details (overview, genres, cast
 
 1. **Clone the repository**  
    ```bash
-   git clone https://github.com/yourusername/movie-info-finder.git
-   cd movie-info-finder
+   git clone https://github.com/VulkoOnDrugs/MoveInspector.git
+   cd MoveInspector
    ```
 
 2. **Install dependencies**  
@@ -46,3 +46,7 @@ Then, search for a movie and get all the details!
 ## 📜 License  
 
 This project is licensed under the MIT License.  
+
+---
+
+Enjoy using **MoveInspector**! 🚀  
