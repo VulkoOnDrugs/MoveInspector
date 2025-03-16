@@ -1,3 +1,4 @@
+// baseURL = 'https://api.themoviedb.org/3'; add it in .env file
 const API_KEY = import.meta.env.VITE_API_KEY;
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
