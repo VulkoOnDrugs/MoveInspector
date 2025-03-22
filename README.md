@@ -31,7 +31,6 @@ MoveInspector is a **React** app that fetches and displays movie details (overvi
    - Create a `.env` file in the project root and add:  
      ```env
      REACT_APP_API_KEY=your_api_key_here
-     REACT_APP_BASE_URL=https://api.themoviedb.org/3
      ```  
    - **Note:** In React, environment variables must start with `REACT_APP_` to be accessible.  
 
@@ -39,7 +38,7 @@ MoveInspector is a **React** app that fetches and displays movie details (overvi
 
 Start the development server:  
 ```bash
-npm start  
+npm run dev  
 ```
 
 Then, open the app in your browser and search for movies! 🎬  

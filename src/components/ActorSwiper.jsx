@@ -1,52 +1,97 @@
-import React, { useState, useEffect } from 'react'
-import { Navigation, Pagination, Scrollbar } from 'swiper/modules'
+import React, { useEffect, useState } from 'react'
 import '../css/ActorSwiper.css'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import "swiper/css"
-import "swiper/css/navigation"
-import "swiper/css/pagination"
-import "swiper/css/scrollbar"
-import { getMovieCast } from '../services/API.js'
+import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
+import { getMovieCast } from '../services/api'
+
+
 
 function ActorSwiper({ movieId }) {
-    const [cast, setCast] = useState([])
+  const [cast, setCast] = useState([]);
 
-    useEffect(() => {
-        const fetchMovieCast = async () => {
-            try {
-                const actorscast = await getMovieCast(movieId);
-                setCast(actorscast);
-            } catch (err) {
-                console.log(err)
-            }
-        };
-        fetchMovieCast();
-    }, [movieId]);
 
-    return (
-        <div className='cast-swiper'>
-            <Swiper
+  useEffect(() => {
+
+    const fetchMovieCast = async () => {
+      try {
+        const actorscast = await getMovieCast(movieId);
+        setCast(actorscast);
+
+      } catch (err) {
+        console.log(err)
+      }
+    };
+
+
+
+
+    fetchMovieCast();
+
+  }, [])
+
+
+  return (
+
+    <div className="actor-container wrapper">
+      <div>
+        {cast.length > 0 ? (
+          <>
+            <h3><span className="pile">&nbsp;</span >
+              Cast -<span style={{ color: "gray", fontWeight: "500", fontSize: "1.2rem" }}
+              >&nbsp;{cast.length}</span>
+            </h3>
+
+            <div className='cast-swiper'>
+              <BsChevronCompactLeft className='main-prev-actor' />
+              <Swiper
                 className="main-slider-component"
                 modules={[Navigation, Pagination, Scrollbar]}
                 spaceBetween={10}
                 slidesPerView={8}
                 slidesPerGroup={7}
                 pagination={false}
-            >
+                navigation={{
+                  prevEl: '.main-prev-actor',
+                  nextEl: '.main-next-actor',
+                }}
+
+              // scrollbar={{
+              //     el: '.swiper-scrollbar',
+              //     draggable: 'auto',
+              //     dragSize: 'auto',
+              // }}
+              >
                 {cast.map((actor) => (
-                    <SwiperSlide key={actor.id}>
-                        <div className='movie-cast-actor-card'>
-                            <img className='movie-actor-image' src={actor.profile_path ? `https://image.tmdb.org/t/p/original${actor.profile_path}` : 'https://dummyimage.com/200x300/919191.png&text=no-image'} alt="movie-actor-image" />
-                        </div>
-                        <div className='movie-cast-actor-name'>{actor.name}</div>
-                        <div className='movie-cast-small-text'>as</div>
-                        <div>{actor.character}</div>
-                    </SwiperSlide>
+                  <SwiperSlide key={actor.id}>
+                    <div className="movie-cast-actor-card">
+                      <img className='movie-cast-actor-image'
+                        src={actor.profile_path ? `https://image.tmdb.org/t/p/original${actor.profile_path}` : 'https://dummyimage.com/200x300/919191.png&text=no-image'}
+                      />
+                      <div className='movie-cast-actor-name'>{actor.name}</div>
+                      <div className='movie-cast-small-text'>as</div>
+                      <div className='movie-cast-small-text'>{actor.character}</div>
+                    </div>
+                  </SwiperSlide>
                 ))}
-                <div className="swiper-scrollbar"></div>
-            </Swiper>
-        </div>
-    )
+                {/* <div className='swiper-scrollbar'></div> */}
+              </Swiper>
+              <BsChevronCompactRight className='main-next-actor' />
+            </div>
+
+          </>
+
+        ) : (<>Няма даннни</>)}
+      </div>
+
+    </div>
+
+
+  )
 }
 
 export default ActorSwiper

@@ -1,33 +1,29 @@
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
+.navbar{
+   
+
     background-color: white;
     box-shadow: 0 2px 15px hsla(0, 0%, 0%, 0.2);
     display: flex;
-    width: 100vw;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
-    z-index: 2000;
-    padding: 10px 20px;
+    z-index: 1000;
+    box-sizing: border-box;
 }
 
-.navbar-brand img {
+.navbar-brand img{
     height: 50px;
+   
 }
 
-.navbar-brand .navbar-link::after {
-    display: none; /* Removes the red underline from logo */
-}
-
-.navbar-links {
+.navbar-links{
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
-.navbar-link {
-    position: relative;
+.navbar-link{
+    
     padding: .5rem 1rem;
     color: #333;
     font-weight: bold;
@@ -35,37 +31,10 @@
     transition: all .5s;
     text-decoration: none;
     font-size: 1.2rem;
+    
+
 }
 
-.navbar-link::after {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 4px;
-    left: 0;
-    bottom: 0;
-    z-index: 1000;
-    background-color: red;
-    transition: all .3s;
+.navbar-link:hover{
+    color: rgb(255, 0, 0);
 }
-
-.navbar-link:hover::after {
-    width: 100%;
-}
-
-.navbar-links .navbar-link::after {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 4px;
-    left: 0;
-    bottom: 0;
-    z-index: 1000;
-    background-color: red;
-    transition: all .3s;
-}
-
-.navbar-links .navbar-link:hover::after {
-    width: 100%;
-}
-

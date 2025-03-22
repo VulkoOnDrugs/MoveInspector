@@ -1,42 +1,80 @@
-.movie-cast-actor-card {
-    width: 150px;
-    height: 225px;
+.actor-container{
+    margin: 2rem 0;
+}
+
+.cast-swiper{
+    border: 1px solid gray;
+    border-radius: .5rem;
+    padding: 1rem 3rem;
+    margin: 1rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.movie-cast-actor-card{
     border-radius: 10px;
+   
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    background-color: rgb(237, 237, 237);
-}
-
-.movie-actor-image {
-    width: 150px;
-    height: 225px;
-    object-fit: cover;
-}
-
-.movie-cast-actor-name {
-    margin-top: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.movie-cast-small-text {
-    font-size: 12px;
-    color: grey;
-    margin: 2px 0;
-    text-align: center;
-}
-
-.movie-cast-actor-image {
     width: 100%;
-    height: 200px; /* Set a fixed height */
-    object-fit: cover; /* Ensure the image covers the area without distortion */
+    background-color: rgb(237, 237, 237);
+    cursor: pointer;
+}
+
+.movie-cast-actor-image{
+    /* width: 200px; */
+    width: 100%;
+    object-fit: cover;
+    transition: all .3s;
+
+}
+
+.movie-cast-actor-name{
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.movie-cast-small-text{
+    font-size: 1.2rem;
+    color: gray;
+    font-weight: 500;
+}
+
+.movie-cast-actor-card:hover .movie-cast-actor-image{
+    scale: 1.05;
+    transform: translateY(-2.5%);
+
+}
+
+.main-prev-actor,
+.main-next-actor{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 4rem;
+    z-index: 10;
+    color: #4a4a4a;
+    cursor: pointer;
     transition: all .3s;
 }
 
-.movie-cast-actor-card:hover .movie-actor-image {
-    scale: 1.05;
-    transform: translate(-2.5%);
+.main-prev-actor:hover,
+.main-next-actor:hover{
+    color: blue;
+}
+
+.main-prev-actor{
+    left: -7px;
+}
+.main-next-actor{
+    right: -7px;
+}
+
+.pile{
+    background-color: blue;
+    margin-right: 1rem;
+    padding: .5rem .2rem;
+    border-radius: 5px;
 }

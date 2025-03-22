@@ -1,31 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import '../css/Home.css';
-import { NowPlayingMovies,getPopularMovies,getUpcomingMovies } from '../services/API';
+import { nowPlayingMovies,getPopularMovies, getUpcomingMovies } from '../services/api';
+import MovieCard from '../components/MovieCard';
 import MovieSwiper from '../components/MovieSwiper';
+
 
 function Home() {
 
   const [nowPlaying, setNowPlaying] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
-  const [upcoming,setUpcoming] = useState([])
+  const [upcoming,setUpcoming] = useState([]);
 
 
   useEffect(()=>{
 
     const fetchNowPlayingMovies = async () =>{
       try{
-        const nowplayingmovies = await NowPlayingMovies();
+        const nowplayingmovies = await nowPlayingMovies();
         setNowPlaying(nowplayingmovies);
-
-      } catch(err) {
-        console.log(err)
-      }
-    };
-
-    const fetchUpcomingMovies = async () =>{
-      try{
-        const UpcomingMovies = await getUpcomingMovies();
-        setUpcoming(UpcomingMovies);
 
       } catch(err) {
         console.log(err)
@@ -41,6 +33,16 @@ function Home() {
       }
     };
 
+    const fetchUpcomingMovies = async () =>{
+      try{
+        const nowplayingmovies = await getUpcomingMovies();
+        setUpcoming(nowplayingmovies);
+
+      } catch(err) {
+        console.log(err)
+      }
+    };
+
     fetchUpcomingMovies();
     fetchNowPlayingMovies();
     fetchPopularMovies();
@@ -48,42 +50,38 @@ function Home() {
   },[])
 
   return (
-  
-    <>
-    <div className='home-wrapper'>
-      <div className="now-playing">
-        <h2>Now Playing</h2>
-        <div className="now-playing-list">
-          {nowPlaying.length > 0 ? (
-            <MovieSwiper movies={nowPlaying} slidesPerView={7} />
-          ) : (
-            <p>Loading ...</p>
-          )}
-        </div>
-      </div>
+    <div className='home wrapper'>
 
-      <h2>Upcoming movies</h2>
-      <div className="upcoming-movie-list">
-        {upcoming.length > 0 ? (
-          <MovieSwiper movies={upcoming} slidesPerView={8} />
-        ) : (
-          <p>Loading ...</p>
-        )}
-      </div>
-    </div><div className="popular-movies">
-        <h2>Popular Movies</h2>
-        <div className="popular-movies-list">
-          {popularMovies.length > 0 ? (
-            <MovieSwiper movies={popularMovies} slidesPerView={7} />
-          ) : (
-            <p>Loading ...</p>
-          )}
-        </div>
-      </div>
-      </>
-      
 
-      
+      {nowPlaying.length > 0 ? (
+        <div className="now-playing">
+          <h2>Now Playng</h2>
+
+          <MovieSwiper movies={nowPlaying} slidesPerView={7} swiperId='nowplaying' />
+
+        </div>
+      ) : (
+        <p>Loading ...</p>
+      )}
+
+
+      <h2>Popular Movies</h2>
+      {popularMovies.length > 0 ? (
+        <MovieSwiper movies={popularMovies} slidesPerView={8} swiperId='popular'/>
+      ) : (
+        <p>Loading ...</p>
+      )}
+
+      <h2>Upcoming Movies</h2>
+      {upcoming.length > 0 ? (
+        <MovieSwiper movies={upcoming} slidesPerView={8} swiperId='upcoming'/>
+      ) : (
+        <p>Loading ...</p>
+      )}
+
+
+
+    </div>
   )
 }
 
