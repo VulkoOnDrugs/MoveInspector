@@ -30,7 +30,7 @@ MoveInspector is a **React** app that fetches and displays movie details (overvi
 4. **Configure API Keys**  
    - Create a `.env` file in the project root and add:  
      ```env
-     REACT_APP_API_KEY=your_api_key_here
+     VITE_API_KEY=your_api_key_here
      ```  
    - **Note:** In React, environment variables must start with `REACT_APP_` to be accessible.  
 
