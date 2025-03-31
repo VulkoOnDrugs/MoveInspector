@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../css/MovieDetails.css'
 import { useParams } from 'react-router-dom'
-import { getMovieCrew, getMovieDetails } from '../services/api';
+import { getMovieCrew, getMovieDetails, getMovieVideos } from '../services/api';
 import { use } from 'react';
 import ActorSwiper from './ActorSwiper';
 
@@ -14,15 +14,14 @@ function MovieDetails() {
   const [story, setStory] = useState([]);
   const [screenPlay, setScreenPlay] = useState([]);
   const [crew, setCrew] = useState([]);
+  const [movieVideos,setMovieVideos] = useState([])
 
   useEffect(()=>{
-    console.log(id);
     
     const fetchMovieDetails = async() =>{
       try {
         const details = await getMovieDetails(id);
         setMovie(details);
-        console.log(details);
 
         const crewDetails = await getMovieCrew(id);
         setCrew(crewDetails);
@@ -38,18 +37,7 @@ function MovieDetails() {
         const screenPlayDetails = crewDetails.filter(member => member.job === "Screenplay" );
         setScreenPlay(screenPlayDetails)
         
-        const fetchMovieVideos = async() =>{
-          try{
-            const videos = await getMovieVideos(id);
-            const filterVideos = videos.filter(videos.type === 'Trailer' && videos.site === YoutTube && videos.official === true)
-          }catch{
-
-          }finally{
-
-          }
-        }
-        fetchMovieVideos();
-        
+       
         
       } catch(err) {
         console.log(err);
@@ -59,6 +47,23 @@ function MovieDetails() {
         setLoading(false);
       }
     }
+
+    const fetchMovieVideos = async() =>{
+      try{
+        const videos = await getMovieVideos(id);
+        const filterVideos = videos.filter((video) => video.type === 'Trailer'
+         && video.site === 'YouTube' && video.official === true)
+        setMovieVideos(filterVideos)
+        console.log(videos, "test")
+      }catch(err){
+        console.error(err)
+        setError('failed to load movie video')
+      }finally{
+
+      }
+    }
+    fetchMovieVideos();
+    
     fetchMovieDetails();
   },[id]);
 
@@ -167,7 +172,22 @@ function MovieDetails() {
           <ActorSwiper movieId={id}/>
         </div>
         <div className="movie-videos">
-          <div className="conatiner"></div>
+        <h3><span className="pile">&nbsp;</span >
+              Videos -<span style={{ color: "gray", fontWeight: "500", fontSize: "1.2rem" }}
+              >&nbsp;{movieVideos.length}</span>
+            </h3>
+          <div className="movie-videos-contanier">
+            
+            {movieVideos.length > 0 ? (<>
+            {movieVideos.map((video)=>(<iframe key={video.id} src={`https://www.youtube.com/embed/${video.key}`}
+            title={video.name} 
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; web-share' 
+            referrerPolicy='srict-origin-when-cross-origin' allowFullScreen>
+
+            </iframe>))}
+            </>):
+            (<p>No videos are available for this movie</p>)}
+          </div>
         </div>
     </div>
   )

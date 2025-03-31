@@ -58,5 +58,5 @@ export const getMovieVideos = async (movieId) => {
         throw new Error(data.status_message || 'Failed to fetch movie crew')
     }
 
-    return data.result
+    return data.results
 }
