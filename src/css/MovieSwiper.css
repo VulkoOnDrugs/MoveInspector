@@ -1,0 +1,66 @@
+
+
+.swiper-container-component{
+    position: relative;
+    width: 100%;
+    padding: 1.5rem 2.5rem;
+    border: 1px solid gray;
+    border-radius: .7rem;
+}
+
+.main-slider-component{
+    width: 100%;
+    user-select: none;
+    padding-bottom: 1rem !important;
+}
+
+[class^="main-prev-component"],
+[class^="main-next-component"]
+ {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    font-size: 4rem;
+    z-index: 10;
+    color: #4a4a4a;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+[class^="main-prev-component"]:hover,
+[class^="main-next-component"]:hover{
+    color: blue;
+    scale: 1.1;
+}
+
+[class^="main-prev-component"]{
+    left: -.7rem;
+}
+
+
+[class^="main-next-component"]{
+    right: -.7rem;
+}
+
+.swiper-scrollbar{
+    /* position: absolute; */
+    bottom: 1rem;
+    left: 0;
+    width: 100%;
+    height: 8px !important;
+    z-index: 30;
+    background-color: #4a4a4a;
+}
+
+.swiper-scrollbar-drag{
+    background-color: #007bff !important;
+    border-radius: 4px;
+    height: 100%;
+    cursor: grab;
+}
+
+.swiper-scrollbar-drag:active{
+    cursor: grabbing;
+}
+

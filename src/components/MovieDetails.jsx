@@ -38,7 +38,17 @@ function MovieDetails() {
         const screenPlayDetails = crewDetails.filter(member => member.job === "Screenplay" );
         setScreenPlay(screenPlayDetails)
         
-        
+        const fetchMovieVideos = async() =>{
+          try{
+            const videos = await getMovieVideos(id);
+            const filterVideos = videos.filter(videos.type === 'Trailer' && videos.site === YoutTube && videos.official === true)
+          }catch{
+
+          }finally{
+
+          }
+        }
+        fetchMovieVideos();
         
         
       } catch(err) {
@@ -155,6 +165,9 @@ function MovieDetails() {
 
         <div>
           <ActorSwiper movieId={id}/>
+        </div>
+        <div className="movie-videos">
+          <div className="conatiner"></div>
         </div>
     </div>
   )
