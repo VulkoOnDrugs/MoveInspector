@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import '../css/MovieDetails.css'
 import { useParams } from 'react-router-dom'
-import { getMovieCrew, getMovieDetails, getMovieVideos } from '../services/api';
+import { getMovieCrew, getMovieDetails, getMovieImages, getMovieVideos } from '../services/api';
 import { use } from 'react';
 import ActorSwiper from './ActorSwiper';
+import MovieGallery from './movieGallery';
 
 function MovieDetails() {
   const { id } = useParams();
@@ -15,6 +16,7 @@ function MovieDetails() {
   const [screenPlay, setScreenPlay] = useState([]);
   const [crew, setCrew] = useState([]);
   const [movieVideos,setMovieVideos] = useState([])
+  const [backdropImages,setBackdropImages] = useState([])
 
   useEffect(()=>{
     
@@ -47,6 +49,15 @@ function MovieDetails() {
         setLoading(false);
       }
     }
+    const fetchMovieImages = async ()=>{
+      try{
+        const images = await getMovieImages(id);
+        setBackdropImages(images)
+      }catch(err){
+      console.log(err);
+      setError('Failed to load Movie images...')
+     }
+    }
 
     const fetchMovieVideos = async() =>{
       try{
@@ -63,7 +74,7 @@ function MovieDetails() {
       }
     }
     fetchMovieVideos();
-    
+    fetchMovieImages();
     fetchMovieDetails();
   },[id]);
 
@@ -188,6 +199,10 @@ function MovieDetails() {
             </>):
             (<p>No videos are available for this movie</p>)}
           </div>
+        </div>
+
+        <div className="movie-images">
+              <MovieGallery backdropImages={backdropImages}/>
         </div>
     </div>
   )
