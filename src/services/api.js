@@ -81,3 +81,42 @@ export const getMovieImages = async (movieId) => {
     return data.backdrops;
 }
 
+export const getRecommendations = async (movieId) => {
+    const response = await fetch (`${BASE_URL}/movie/${movieId}/recommendations?api_key=${API_KEY}`);
+    const data = await response.json();
+    if(!response.ok) {
+        throw new Error(data.status_message || 'Failed to fetch movie images')
+    }
+
+    return data.results;
+}
+
+export const getPeopleDetails = async (personId) => {
+    const response = await fetch (`${BASE_URL}/person/${personId}?api_key=${API_KEY}`);
+    const data = await response.json();
+    if(!response.ok) {
+        throw new Error(data.status_message || 'Failed to fetch people')
+    }
+
+    return data;
+}
+
+export const getPeopleSocialDetails = async (personId) => {
+    const response = await fetch (`${BASE_URL}/person/${personId}/external_ids?api_key=${API_KEY}`);
+    const data = await response.json();
+    if(!response.ok) {
+        throw new Error(data.status_message || 'Failed to fetch Social')
+    }
+
+    return data;
+}
+
+export const getPeopleImages = async (personId) => {
+    const response = await fetch (`${BASE_URL}/person/${personId}/images?api_key=${API_KEY}`);
+    const data = await response.json();
+    if(!response.ok) {
+        throw new Error(data.status_message || 'Failed to fetch people images')
+    }
+
+    return data.profiles;
+}

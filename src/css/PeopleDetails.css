@@ -1,0 +1,38 @@
+.people-main-info{
+    display: flex;
+    background-color: rgba(128, 128, 128, 0.5);
+    min-height: 100vh;
+    padding: 7rem 4rem 1rem 4rem;
+    gap: 2rem;
+    color: #4a4a4a;
+}
+
+.people-details-img{
+    width: 25%;
+}
+
+.people-details-img img{
+    width: 300px;
+    border-radius: 2rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+}
+
+.people-details-img .social{
+    padding: 1rem;
+    display: flex;
+    gap: .5rem;
+    font-size: 2rem;
+    align-items: center;
+    filter: drop-shadow(0 0 .1rem rgba(0, 0, 0, .5));
+}
+
+.people-details-img .social a{
+    color: #4a4a4a;
+    transition: all .3s;
+}
+
+.people-details-img .social a:hover{
+    color: blue;
+    scale: 1.1;
+    rotate: 10deg;
+}

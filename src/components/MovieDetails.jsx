@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import '../css/MovieDetails.css'
 import { useParams } from 'react-router-dom'
-import { getMovieCrew, getMovieDetails, getMovieImages, getMovieVideos } from '../services/api';
+import { getMovieCrew, getMovieDetails, getMovieImages, getMovieVideos, getRecommendations } from '../services/api';
 import { use } from 'react';
 import ActorSwiper from './ActorSwiper';
 import MovieGallery from './movieGallery';
+import MovieSwiper from './MovieSwiper'
 
 function MovieDetails() {
   const { id } = useParams();
@@ -17,6 +18,7 @@ function MovieDetails() {
   const [crew, setCrew] = useState([]);
   const [movieVideos,setMovieVideos] = useState([])
   const [backdropImages,setBackdropImages] = useState([])
+  const [recommendations,setRecommendations] = useState([])
 
   useEffect(()=>{
     
@@ -73,9 +75,20 @@ function MovieDetails() {
 
       }
     }
+
+    const fetchRecommendations = async ()=>{
+      try{
+        const recommendations = await getRecommendations(id);
+        setRecommendations(recommendations)
+      }catch(err){
+      console.log(err);
+      setError('Failed to load Movie images...')
+     }
+    }
     fetchMovieVideos();
     fetchMovieImages();
     fetchMovieDetails();
+    fetchRecommendations();
   },[id]);
 
   if(loading) return <div className='loading'>Loading...</div>;
@@ -200,9 +213,23 @@ function MovieDetails() {
             (<p>No videos are available for this movie</p>)}
           </div>
         </div>
-
+        <div className="movie-images-info wrapper">
+        <h3><span className="pile">&nbsp;</span >
+              Images -<span style={{ color: "gray", fontWeight: "500", fontSize: "1.2rem" }}
+              >&nbsp;{backdropImages.length}</span>
+            </h3>
+        </div>
         <div className="movie-images">
               <MovieGallery backdropImages={backdropImages}/>
+        </div>
+        <div className="movie-images-info wrapper">
+        <h3><span className="pile">&nbsp;</span >
+              Reccomendations -<span style={{ color: "gray", fontWeight: "500", fontSize: "1.2rem" }}
+              >&nbsp;{recommendations.length}</span>
+            </h3>
+        </div>
+        <div className="movie-recommendations wrapper">
+          <MovieSwiper movies={recommendations} slidesPerView={8}/>
         </div>
     </div>
   )

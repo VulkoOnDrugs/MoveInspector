@@ -8,10 +8,11 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { getMovieCast } from '../services/api'
-
+import { useNavigate } from 'react-router-dom';
 
 
 function ActorSwiper({ movieId }) {
+  const navigate = useNavigate();
   const [cast, setCast] = useState([]);
 
 
@@ -34,6 +35,9 @@ function ActorSwiper({ movieId }) {
 
   }, [])
 
+  function handleActorClick(actor_id){
+    navigate(`/person/${actor_id}`)
+  }
 
   return (
 
@@ -68,7 +72,7 @@ function ActorSwiper({ movieId }) {
               >
                 {cast.map((actor) => (
                   <SwiperSlide key={actor.id}>
-                    <div className="movie-cast-actor-card">
+                    <div className="movie-cast-actor-card" onClick={()=>handleActorClick(actor.id)}>
                       <img className='movie-cast-actor-image'
                         src={actor.profile_path ? `https://image.tmdb.org/t/p/original${actor.profile_path}` : 'https://dummyimage.com/200x300/919191.png&text=no-image'}
                       />
