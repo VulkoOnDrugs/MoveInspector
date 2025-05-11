@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, UseRef, useRef } from 'react'
 import '../css/PeopleDetails.css'
 import { useParams } from 'react-router-dom'
 import { getPeopleDetails, getPeopleSocialDetails,getPeopleImages } from '../services/api'
 import { FaInstagram, FaImdb, FaLink, FaYoutube, FaTiktok, FaSquareXTwitter, FaFacebook} from "react-icons/fa6";
+import FormatedDate from './FormatedDate';
 
 function PeopleDetails() {
     const {id} = useParams();
@@ -13,6 +14,15 @@ function PeopleDetails() {
     const [peopleSocial,setPeopleSocial] = useState([])
     const [peopleImages,setPeopleImages] = useState([])
     const [bio,setBio] = useState('')
+    const [isExpanded, setIsExpanded] = useState(false)
+
+
+    const textRef = useRef();
+
+
+    function toggleExpand(){
+        setIsExpanded(!isExpanded)
+    }
 
     const calculateAge = (birthDate,deathDate = null) =>{
         const birth = new Date(birthDate);
@@ -80,7 +90,7 @@ function PeopleDetails() {
                         <a href={`https://facebook.com/${peopleSocial.facebook_id}`} target='blank'><FaFacebook/></a>
                     )}
                     {peopleSocial.tiktok_id && (
-                        <a href={`https://tiktok.com/${peopleSocial.tiktok_id}`} target='blank'><FaTiktok/></a>
+                        <a href={`https://tiktok.com/@${peopleSocial.tiktok_id}`} target='blank'><FaTiktok/></a>
                     )}
                     {peopleSocial.twitter_id && (
                         <a href={`https://x.com/${peopleSocial.twitter_id}`} target='blank'><FaSquareXTwitter/></a>
@@ -98,6 +108,67 @@ function PeopleDetails() {
             </div>
             <div className="people-personal-info">
                 <h1 className='personal-details-name'>{PeopleDetails.name}</h1>
+                {PeopleDetails.birthday && (
+                    <div className="personal-details">
+                        <h3>Birthday:</h3>
+                        <div className="personal-details-detail">
+                            <FormatedDate dataString={PeopleDetails.birthday}/>
+                        </div>
+                        <span><p>({age}) years old</p></span>
+                    </div>
+                )}
+
+                {PeopleDetails.deathday && (
+                    <div className="personal-details">
+                        <h3>Birthday:</h3>
+                        <div className="personal-details-detail">
+                            <FormatedDate dataString={PeopleDetails.death}/>
+                        </div>
+                        <span><p>({age})</p></span>
+                    </div>
+                )}
+
+                {PeopleDetails.place_of_birth && (
+                    <div className="personal-details">
+                        <h3>Place of birth:</h3>
+                        <div className="personal-details-detail">
+                            <span>{PeopleDetails.place_of_birth}</span>
+                        </div>
+                    </div>
+                )}
+
+                {PeopleDetails.gender && (
+                    <div className="personal-details">
+                        <h3>gender:</h3>
+                        <div className="personal-details-detail">
+                            <span>{gender}</span>
+                        </div>
+                    </div>
+                )}
+
+                {PeopleDetails.homepage && (
+                    <div className="personal-details">
+                        <h3>Home page:</h3>
+                        <div className="personal-details-detail">
+                            <span><a href={PeopleDetails.homepage}>{PeopleDetails.homepage}</a></span>
+                        </div>
+                    </div>
+                )}
+
+                {PeopleDetails.biography && (
+                    <div className="personal-details-bio">
+                        <h3>Biography:</h3>
+                        <div className={`personal-details-detail-bio ${isExpanded ? 'expanded': ''}`}
+                        ref={textRef}
+                        style={{maxHeight:isExpanded ? textRef.current.scrollHeight : '48px'}}>
+                            <span>{PeopleDetails.biography}</span>
+                        </div>
+                        <div className="read-more-btn">
+                            <button onClick={toggleExpand}>{isExpanded ? 'Read Less...' : 'Read More...'}</button>
+                        </div>
+                    </div>
+                )}
+                
             </div>
         </div>
     </div>
