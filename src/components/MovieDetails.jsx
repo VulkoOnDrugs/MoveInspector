@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { getMovieCrew, getMovieDetails, getMovieImages, getMovieVideos, getRecommendations } from '../services/api';
 import { use } from 'react';
 import ActorSwiper from './ActorSwiper';
-import MovieGallery from './movieGallery';
+import MovieGallery from './MovieGallery';
 import MovieSwiper from './MovieSwiper'
 
 function MovieDetails() {

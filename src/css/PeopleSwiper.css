@@ -1,0 +1,56 @@
+.people-swiper-wrapper{
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 1rem 0;
+
+}
+
+.people-swiper-container{
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px;
+    position: relative;
+}
+
+.people-swiper-slide{
+    height: auto;
+    cursor: pointer;
+    border-radius: .5rem;
+    margin: 0 auto;
+}
+
+.people-swiper-slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: .5rem;
+    transition: all .3s;
+
+}
+
+.people-swiper-slide:hover img {
+    transform: scale(1.1);
+}
+
+.people-swiper-next,
+.people-swiper-prev{
+    font-size: 4rem;
+    position: absolute;
+    display: block;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    color: #939393;
+    cursor: pointer;
+
+}
+
+.people-swiper-prev{
+    left: -15px;
+}
+.people-swiper-next{
+    right: -15px;
+}

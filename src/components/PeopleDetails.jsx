@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom'
 import { getPeopleDetails, getPeopleSocialDetails,getPeopleImages } from '../services/api'
 import { FaInstagram, FaImdb, FaLink, FaYoutube, FaTiktok, FaSquareXTwitter, FaFacebook} from "react-icons/fa6";
 import FormatedDate from './FormatedDate';
+import PeopleSwiper from './PeopleSwiper';
+import PeopleCredits from './PeopleCredits';
 
 function PeopleDetails() {
     const {id} = useParams();
@@ -21,6 +23,7 @@ function PeopleDetails() {
 
 
     function toggleExpand(){
+
         setIsExpanded(!isExpanded)
     }
 
@@ -164,13 +167,17 @@ function PeopleDetails() {
                             <span>{PeopleDetails.biography}</span>
                         </div>
                         <div className="read-more-btn">
-                            <button onClick={toggleExpand}>{isExpanded ? 'Read Less...' : 'Read More...'}</button>
+                            <button onClick={()=>toggleExpand()}>{isExpanded ? 'Read Less...' : 'Read More...'}</button>
                         </div>
                     </div>
                 )}
+
+                <PeopleSwiper images={peopleImages}/>
                 
             </div>
+            
         </div>
+        <PeopleCredits peopleId={id}/>
     </div>
   )
 }

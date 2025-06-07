@@ -3,6 +3,7 @@ import '../css/Home.css';
 import { nowPlayingMovies,getPopularMovies, getUpcomingMovies } from '../services/api';
 import MovieCard from '../components/MovieCard';
 import MovieSwiper from '../components/MovieSwiper';
+import SearchBar from '../components/SearchBar';
 
 
 function Home() {
@@ -51,7 +52,6 @@ function Home() {
 
   return (
     <div className='home wrapper'>
-
 
       {nowPlaying.length > 0 ? (
         <div className="now-playing">

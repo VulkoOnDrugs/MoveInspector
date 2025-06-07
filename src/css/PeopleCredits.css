@@ -1,0 +1,76 @@
+.people-credits{
+    padding: 2rem 4rem;
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+}
+
+.people-credits-col{
+    width: 50%;
+}
+
+.people-credits-title{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.acting-list{
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.acting-item{
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+    font-size: 1rem;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.acting-item:hover{
+    background-color: #f5f5f5;
+}
+
+.acting-item:last-child{
+    border-bottom: none;
+}
+
+.acting-item img{
+    width: 46px;
+    margin-right: 1rem;
+    border-radius: .25rem;
+    object-fit: cover;
+}
+
+.acting-movie-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-title{
+    flex: 1;
+    font-weight: bold;
+    color: #4a4a4a;
+}
+
+.vote-average{
+    display: flex;
+    align-items: center;
+    font-size: .875rem;
+    color: #666;
+}
+
+.character{
+    color: #777;
+}
+
+.episode-count{
+    color: #999;
+    font-style: italic;
+}

@@ -120,3 +120,13 @@ export const getPeopleImages = async (personId) => {
 
     return data.profiles;
 }
+
+export const getPeopleCredits = async (personId) => {
+    const response = await fetch (`${BASE_URL}/person/${personId}/combined_credits?api_key=${API_KEY}`);
+    const data = await response.json();
+    if(!response.ok) {
+        throw new Error(data.status_message || 'Failed to fetch people credits')
+    }
+
+    return data;
+}
