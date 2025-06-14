@@ -1,0 +1,35 @@
+.gallery-container{
+    position: relative;
+    padding: 0 1rem;
+}
+
+.gallery-button-prev,
+.gallery-button-next{
+    font-size: 4rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+    cursor: pointer;
+    transition: all .3s;
+    z-index: 10;
+}
+
+.gallery-button-prev{
+    left: -2.1rem
+}
+
+.gallery-button-next{
+    right: -2.1rem;
+}
+
+.gallery-swiper{
+    padding-bottom: .5rem;
+}
+
+.gallery-swiper .swiper-pagination-progressbar{
+    position: absolute;
+    width: 100%;
+    height: 7px;
+    top:95%;
+}
