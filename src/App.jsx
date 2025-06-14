@@ -5,12 +5,13 @@ import Home from './pages/Home';
 import Favorites from './pages/Favorites'
 import MovieDetails from "./components/MovieDetails"
 import PeopleDetails from './components/PeopleDetails';
+import {MovieProvider} from "./context/MovieContext.jsx";
 
 function App() {
  
   return (
 
-    <>
+    <MovieProvider>
       <NavBar />
       <main className='main-content'>
         <Routes>
@@ -22,7 +23,7 @@ function App() {
         </Routes>
 
       </main>
-    </>
+    </MovieProvider>
     
   )
 }

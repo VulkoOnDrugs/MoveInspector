@@ -130,3 +130,19 @@ export const getPeopleCredits = async (personId) => {
 
     return data;
 }
+
+export const searchMovies = async (query) => {
+
+    try{
+        const response = await fetch (`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}`);
+        if(!response.ok) {
+            throw new Error(`http error! status ${response.status}`);
+        }
+        const data = await response.json();
+        return data.results;
+    }catch (error) {
+        console.error('Error fetching search results:', error);
+        throw error;
+    }
+
+}

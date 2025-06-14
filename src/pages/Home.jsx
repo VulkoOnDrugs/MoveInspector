@@ -4,10 +4,12 @@ import { nowPlayingMovies,getPopularMovies, getUpcomingMovies } from '../service
 import MovieCard from '../components/MovieCard';
 import MovieSwiper from '../components/MovieSwiper';
 import SearchBar from '../components/SearchBar';
+import {useMovieContext} from "../context/MovieContext.jsx";
 
 
 function Home() {
 
+  const {movies,loading,error} = useMovieContext()
   const [nowPlaying, setNowPlaying] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
   const [upcoming,setUpcoming] = useState([]);
@@ -52,6 +54,12 @@ function Home() {
 
   return (
     <div className='home wrapper'>
+
+      {movies.length > 0 && (
+      <>
+        <h2>Search Results</h2>
+        <MovieSwiper movies={movies}/>
+      </>)}
 
       {nowPlaying.length > 0 ? (
         <div className="now-playing">

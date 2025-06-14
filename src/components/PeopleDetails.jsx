@@ -102,7 +102,7 @@ function PeopleDetails() {
                         <a href={`https://youtube.com/${peopleSocial.youtube_id}`} target='blank'><FaYoutube/></a>
                     )}
                     {peopleSocial.imdb_id && (
-                        <a href={`https://imdb.com/name/${peopleSocial.imdb_id}`} target='blank'><FaImdb/></a>
+                        <a href={`https://imdb.com/name/${peopleSocial.imdb_id}`} target='_blank'><FaImdb/></a>
                     )}
                     {PeopleDetails.homepage && (
                         <a href={peopleSocial.homepage} target='blank'><FaLink/></a>

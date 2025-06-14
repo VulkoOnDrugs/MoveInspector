@@ -32,7 +32,7 @@ MoveInspector is a **React** app that fetches and displays movie details (overvi
      ```env
      VITE_API_KEY=your_api_key_here
      ```  
-   - **Note:** In React, environment variables must start with `REACT_APP_` to be accessible.  
+   - **Note:** In React, environment variables must start with `VITE_API_KEY=` to be accessible.  
 
 ## ▶️ Usage  
 
